@@ -1,0 +1,4 @@
+[submodule "submodules/cpputest"]
+	path = submodules/cpputest
+	url = git@github.com:cpputest/cpputest
+  branch = e25097614e1c4856036366877a02346c4b36bb5b
