@@ -13,7 +13,10 @@ all:
 init:
 	git submodule update --recursive
 
-test: all
+test:
+	cd $(MFDIR)
+	mkdir -p $(BUILD)
+	cd $(BUILD) && $(CMAKE) .. -DBUILD_TESTS=true && make
 	$(BUILD)/gungi/tests/gungi-test
 
 clean:

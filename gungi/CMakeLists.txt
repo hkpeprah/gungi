@@ -30,4 +30,6 @@ target_include_directories (gungi INTERFACE ${PROJECT_DIR}/lib)
 target_compile_options (gungi INTERFACE -Werror)
 
 # Add the test subdirectory so that the tests can be compiled.
-add_subdirectory (tests)
+if (BUILD_TESTS)
+   add_subdirectory (tests)
+endif (BUILD_TESTS)
