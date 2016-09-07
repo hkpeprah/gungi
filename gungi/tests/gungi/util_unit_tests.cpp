@@ -242,6 +242,25 @@ TEST(UtilTest, find_posn_set_returns_iterator) {
   CHECK_TRUE(Util::find(set, c) == set.end());
 }
 
+TEST(UtilTest, all_walks) {
+  const Builder builder;
+  Unit pawn(GUNGI_PIECE_PAWN, GUNGI_PIECE_NONE, BLACK, builder);
+
+  {
+    Posn p1(0, 0);
+    PosnSet posns = Util::allWalks(&pawn, 0, p1);
+    CHECK_EQUAL(1, posns.size());
+    CHECK_TRUE(posns[0] == Posn(0, 1));
+  }
+  {
+    Posn p1(0, 0);
+    PosnSet posns = Util::allWalks(&pawn, 1, p1);
+    CHECK_EQUAL(2, posns.size());
+    CHECK_TRUE(posns[0] == Posn(0, 1));
+    CHECK_TRUE(posns[1] == Posn(2, 0));
+  }
+}
+
 TEST(UtilTest, any_walk_pawn_end) {
   const Builder builder;
   Unit pawn(GUNGI_PIECE_PAWN, GUNGI_PIECE_NONE, BLACK, builder);

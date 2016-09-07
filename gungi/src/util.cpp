@@ -186,6 +186,68 @@ bool Util::anyWalk(const Unit *unit,
   return false;
 }
 
+PosnSet Util::allWalks(const Unit *unit,
+                       tier_t      tier,
+                       const Posn& start,
+                       bool        invert) {
+  GASSERT(unit);
+  PosnSet posns;
+
+  const move_vector_t move_vector = unit->moveset()[tier];
+  for (const std::vector<move_t> moves : move_vector) {
+    // Check the moves available at the tier.  Each portion of the move must be
+    // executed in turn to walk towards the 'end' position.
+    Posn pos = start;
+
+    for (const move_t move : moves) {
+      unsigned int dir = move.move_direction;
+      move_mod_t mod = move.move_modifier;
+
+      while (dir) {
+        if (dir & GUNGI_MOVE_DIR_UP) {
+          pos.up(invert);
+          if (!mod) {
+            dir ^= GUNGI_MOVE_DIR_UP;
+          }
+        }
+
+        if (dir & GUNGI_MOVE_DIR_DOWN) {
+          pos.down(invert);
+          if (!mod) {
+            dir ^= GUNGI_MOVE_DIR_DOWN;
+          }
+        }
+
+        if (dir & GUNGI_MOVE_DIR_LEFT) {
+          pos.left(invert);
+          if (!mod) {
+            dir ^= GUNGI_MOVE_DIR_LEFT;
+          }
+        }
+
+        if (dir & GUNGI_MOVE_DIR_RIGHT) {
+          pos.right(invert);
+          if (!mod) {
+            dir ^= GUNGI_MOVE_DIR_RIGHT;
+          }
+        }
+
+        if (mod && pos.isValid()) {
+          posns.push_back(pos);
+        } else if (!pos.isValid()) {
+          break;
+        }
+      }
+    }
+
+    if (pos.isValid()) {
+      posns.push_back(pos);
+    }
+  }
+
+  return posns;
+}
+
 PosnSet Util::getWalk(const Unit *unit,
                       tier_t      tier,
                       const Posn& start,

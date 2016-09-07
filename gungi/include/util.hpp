@@ -116,6 +116,15 @@ public:
     // walk is top-down ('true'), otherwise bottom-up ('false'), defaults to
     // 'false'.
 
+  static PosnSet allWalks(const Unit *unit,
+                          tier_t      tier,
+                          const Posn& start,
+                          bool        invert = false);
+    // Returns the set of all positions that the given 'unit' at the given
+    // 'Posn', 'start', and tier, 'tier', can reach.  The optionally specified
+    // 'invert' parameter determines if the walk is top-down ('true'),
+    // otherwise bottom-up ('false'), defaults to 'false'.
+
   static PosnSet getWalk(const Unit *unit,
                          tier_t      tier,
                          const Posn& start,
