@@ -536,7 +536,7 @@ bool GNDecoder::decodeMovetext(std::stringstream& ss, Controller& controller) {
       break;
     }
 
-    if (ch == '#' || ch == 'C') {
+    if (ch == '#' || ch == '(') {
       decodeComment(ss);
       continue;
     }
@@ -578,7 +578,7 @@ bool GNDecoder::decodeMovetext(std::stringstream& ss, Controller& controller) {
       break;
     }
 
-    if (ch == '#' || ch == 'C') {
+    if (ch == '#' || ch == '(') {
       while (ch == '#' || ch == '(') {
         decodeComment(ss);
         ss >> std::ws;
@@ -586,7 +586,7 @@ bool GNDecoder::decodeMovetext(std::stringstream& ss, Controller& controller) {
       }
     }
 
-    if (ss.eof() || ss.fail()) {
+    if (ch == EOF || ss.fail()) {
       break;
     }
 

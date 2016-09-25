@@ -12,8 +12,6 @@
 #include <sstream>
 #include <string>
 
-#include "scenarios.res"
-
 using namespace gungi;
 
 TEST_GROUP(GNDecoderTest) {
@@ -553,6 +551,8 @@ TEST(GNDecoderTest, decode_valid_multiline) {
 }
 
 TEST(GNDecoderTest, decode_initial_arrangement) {
+#include "scenarios.res"
+
   const char *data = reinterpret_cast<char *>(initial_arrangement_gn);
   unsigned int data_len = initial_arrangement_gn_len;
   std::string gn(data, data_len);
