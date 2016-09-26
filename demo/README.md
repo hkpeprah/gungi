@@ -29,13 +29,13 @@ The commands for making moves within the game are as follows:
 
 | Type             | Format                           |
 | ---------------- | -------------------------------- |
-| Drop             | 'd <piece> <posn>'               |
-| Move             | 'm <posn>-<tier> <posn>'         |
-| Immobile Strike  | 'i <posn>-<tier> <tier>'         |
-| Force Recover    | 'fr'                             |
-| No Force Recover | 'nfr'                            |
-| Substitution     | 's <posn>-<tier> <posn>-<tier>'  |
-| Tier Exchange    | 't <posn>-<tier> <tier>'         |
+| Drop             | `d <piece> <posn>`               |
+| Move             | `m <posn>-<tier> <posn>`         |
+| Immobile Strike  | `i <posn>-<tier> <tier>`         |
+| Force Recover    | `fr`                             |
+| No Force Recover | `nfr`                            |
+| Substitution     | `s <posn>-<tier> <posn>-<tier>`  |
+| Tier Exchange    | `t <posn>-<tier> <tier>`         |
 
 # TODO
 
