@@ -141,6 +141,9 @@ public:
 
     // Pointer to the player whose hand the recovered unit will be added to.
     Player  *player;
+
+    // Pointer to the tower the unit was in.
+    const Tower *tower;
   } recover_t;
 
   // TYPE DEFINITIONS
@@ -295,7 +298,18 @@ public:
     // Returns the current game state.
 
   const Unit *forcedRearrangeUnit(void) const;
-    // Returns a constant pointer to the unit being forced rearranged, if any.
+    // Returns a constant pointer to the unit being force rearranged, if any.
+
+  const Unit *forcedRecoveryUnit(void) const;
+    // Returns a constant pointer to the unit being force recovered, if any.
+
+  const int forcedRecoveryColour(void) const;
+    // Returns the colour of the player whose hand the force recovered unit
+    // would go to, otherwise '-1' if no player.
+
+  const Tower *forcedRecoveryTower(void) const;
+    // Returns a constant pointer to the tower the unit was force recovered
+    // from.
 
   const Unit *unitAtPosn(const Posn& posn, tier_t tier) const;
     // Returns a constant pointer to the Unit at the given 'tier' in the tower

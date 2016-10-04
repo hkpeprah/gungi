@@ -37,6 +37,7 @@ CommandParser::CommandParser(int argc, char *argv[])
 , outputFile()
 , controller()
 , metadata()
+, moveCount(0)
 {
   std::stringstream ss;
   for (int i = 1; i < argc; i++) {
@@ -91,7 +92,8 @@ CommandParser::CommandParser(int argc, char *argv[])
         exit(-4);
       }
 
-      if (!gungi::GNDecoder::decode(readFile(inputFile), metadata, controller)) {
+      std::string contents = readFile(inputFile);
+      if (!gungi::GNDecoder::decode(contents, metadata, controller)) {
         std::cerr
           << "Malformed input file: "
           << value
@@ -123,26 +125,23 @@ std::string CommandParser::usage(void) const {
   std::ostringstream oss;
   oss
     << progName
-    << " [ -h | --help ]"
-    << " [ -o | --output file ] [ -i | --input file]"
-    << " [ -l | --location location ] [ -e | --event event ]"
-    << " [ -w | --white name ] [ -b | --black name ]"
+    << " [ optional arguments ]"
     << std::endl
     << std::endl
     << "Optional Args:"
     << std::endl
-    << "  -h\\--help                 show this dialog"
+    << "  -h, --help                          show this dialog"
     << std::endl
-    << "  -o\\--output file          output '.gn' file"
+    << "  -o FILE, --output FILE              output '.gn' file"
     << std::endl
-    << "  -i\\--input file           input '.gn' file to load"
+    << "  -i FILE, --input FILE               input '.gn' file to load"
     << std::endl
-    << "  -l\\--location location    match location"
+    << "  -l LOCATION, --location LOCATION    match location"
     << std::endl
-    << "  -e\\--event event          name of the match"
+    << "  -e EVENT, --event EVENT             name of the match"
     << std::endl
-    << "  -w\\--white name           name of the whie player"
+    << "  -w NAME, --white NAME               name of the whie player"
     << std::endl
-    << "  -b\\--black name           name of the black player";
+    << "  -b NAME, --black NAME               name of the black player";
   return oss.str();
 }

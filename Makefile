@@ -11,6 +11,7 @@ all:
 	cd $(BUILD) && $(CMAKE) .. && make
 
 init:
+	git submodule init
 	git submodule update --recursive
 
 test:

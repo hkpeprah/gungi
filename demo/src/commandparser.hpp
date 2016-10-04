@@ -28,6 +28,9 @@ public:
   gungi::Controller controller;
                      // Game logic controller.
 
+  unsigned int      moveCount;
+                     // Number of moves loaded from the 'inputFile'.
+
   gungi::GNMetadata metadata;
                      // Game metadata.
 

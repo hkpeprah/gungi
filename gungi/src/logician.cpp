@@ -289,7 +289,7 @@ void Logician::reset(void) {
   m_boardRecorder.reset();
   m_toRearrange.reset();
   m_recovery.unit.reset();
-  m_recovery.player = NULL;
+  memset(&m_recovery, 0, sizeof(m_recovery));
   memset(m_expansions, 0, k_BOARD_SIZE * sizeof(unsigned int));
   m_escapeRoutes.clear();
   m_checkPoints.clear();
@@ -743,6 +743,18 @@ const Logician::game_state_t& Logician::state(void) const {
 
 const Unit *Logician::forcedRearrangeUnit(void) const {
   return m_toRearrange.get();
+}
+
+const Unit *Logician::forcedRecoveryUnit(void) const {
+  return m_recovery.unit.get();
+}
+
+const int Logician::forcedRecoveryColour(void) const {
+  return (m_recovery.player ? m_recovery.player->colour() : -1);
+}
+
+const Tower *Logician::forcedRecoveryTower(void) const {
+  return m_recovery.tower;
 }
 
 const Unit *Logician::unitAtPosn(const Posn& posn, tier_t tier) const {
@@ -1347,6 +1359,7 @@ void Logician::moveUnit(const Unit& unit, const Posn& posn, error_t& error) {
     if (!Util::anyWalk(&unit, tier, unitPosn, isInverted(unit.colour()))) {
       m_recovery.unit = unitPtr;
       m_recovery.player = capturedUnits.size() ? &next() : &current();
+      m_recovery.tower = &tower;
     }
 
     if (isInMobileRangeExpansion(unitPosn, unit.colour()) &&
@@ -1354,6 +1367,7 @@ void Logician::moveUnit(const Unit& unit, const Posn& posn, error_t& error) {
         !Util::anyWalk(&unit, tier + 1, unitPosn, isInverted(unit.colour()))) {
       m_recovery.unit = unitPtr;
       m_recovery.player = capturedUnits.size() ? &next() : &current();
+      m_recovery.tower = &tower;
     }
   }
 
@@ -1566,7 +1580,7 @@ void Logician::forceRecover(bool recover, error_t& error) {
   }
 
   m_recovery.unit.reset();
-  m_recovery.player = NULL;
+  memset(&m_recovery, 0, sizeof(m_recovery));
 
   updateStateAfterTurn(error);
   GASSERT(error == GUNGI_ERROR_NONE);

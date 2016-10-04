@@ -40,6 +40,9 @@ private:
   std::ostringstream  m_outputStream;
                        // Output string stream.
 
+  unsigned int        m_moveCount;
+                       // Count of moves that have been made.
+
   std::string         m_errorString;
                        // The error message stored in the application.
 

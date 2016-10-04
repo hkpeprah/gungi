@@ -9,18 +9,16 @@ terminal.
 The interface for running the application from the command-line is:
 
 ```
-build/demo/demo [ -h | --help ] [ -o | --output file ] [ -i | --input file]
-                [ -l | --location location ] [ -e | --event event ]
-                [ -w | --white name ] [ -b | --black name ]
+build/demo/demo [ optional arguments ]
 
 Optional Args:
-  -h\--help                 show this dialog
-  -o\--output file          output '.gn' file
-  -i\--input file           input '.gn' file to load
-  -l\--location location    match location
-  -e\--event event          name of the match
-  -w\--white name           name of the whie player
-  -b\--black name           name of the black player
+  -h, --help                          show this dialog
+  -o FILE, --output FILE              output '.gn' file
+  -i FILE, --input FILE               input '.gn' file to load
+  -l LOCATION, --location LOCATION    match location
+  -e EVENT, --event EVENT             name of the match
+  -w NAME, --white NAME               name of the whie player
+  -b NAME, --black NAME               name of the black player
 ```
 
 # Application Commands
@@ -37,6 +35,6 @@ The commands for making moves within the game are as follows:
 | Substitution     | `s <posn>-<tier> <posn>-<tier>`  |
 | Tier Exchange    | `t <posn>-<tier> <tier>`         |
 
-# TODO
+# Todo
 
-- Export moves as movetext in Gungi Notation file.
+- Handle input files for move string exporting.

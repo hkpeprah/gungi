@@ -1142,6 +1142,8 @@ const char *piece_to_gn_identifier(piece_id_t piece) {
 
 piece_id_t gn_identifier_to_piece(const char *id) {
   std::string strId(id);
+  strId = Util::toUpperCase(strId);
+
   for (int i = GUNGI_PIECE_NONE + 1; i < GUNGI_NUM_PIECES; i++) {
     piece_id_t piece = static_cast<piece_id_t>(i);
     std::string pieceId(piece_to_gn_identifier(piece));
@@ -1149,6 +1151,7 @@ piece_id_t gn_identifier_to_piece(const char *id) {
       return piece;
     }
   }
+
   return GUNGI_PIECE_NONE;
 }
 
