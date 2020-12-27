@@ -17,7 +17,7 @@ set (ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 # CMakeLists files in this project can refer to the root source directory of
 # the project as '${GUNGI_SOURCE_DIR}' and to the root binary directory of
 # the project as '${GUNGI_BINARY_DIR}'.
-cmake_minimum_required (VERSION 3.4.1)
+cmake_minimum_required (VERSION 3.4)
 project (GUNGI)
 
 # Recurse into the subdirectories.
