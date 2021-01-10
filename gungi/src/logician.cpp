@@ -1573,7 +1573,7 @@ void Logician::forceRecover(bool recover, error_t& error) {
     m_recovery.player->addUnit(m_recovery.unit.get(), error);
     GASSERT(error == GUNGI_ERROR_NONE);
 
-    // Remove the unit from teh board.
+    // Remove the unit from the board.
     Tower& tower = m_board[m_recovery.unit->tower()->posn().index()];
     tower.remove(m_recovery.unit.get(), error);
     GASSERT(error == GUNGI_ERROR_NONE);

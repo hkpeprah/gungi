@@ -6,6 +6,7 @@ set (TEST_RUNNER ${TEST_DIR}/main.cpp
                  ${TEST_DIR}/builder_unit_tests.cpp
                  ${TEST_DIR}/gndecoder_unit_tests.cpp
                  ${TEST_DIR}/gtypes_unit_tests.cpp
+                 ${TEST_DIR}/gungi_unit_tests.cpp
                  ${TEST_DIR}/logician_unit_tests.cpp
                  ${TEST_DIR}/player_unit_tests.cpp
                  ${TEST_DIR}/posn_unit_tests.cpp

@@ -2,7 +2,8 @@
 set (PROJECT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 # List the source files that make up the "gungi" library.
-set (SOURCE_FILES ${PROJECT_DIR}/src/builder.cpp
+set (SOURCE_FILES ${PROJECT_DIR}/lib/gungi/gungi.cpp
+                  ${PROJECT_DIR}/src/builder.cpp
                   ${PROJECT_DIR}/src/gndecoder.cpp
                   ${PROJECT_DIR}/src/gtypes.cpp
                   ${PROJECT_DIR}/src/logician.cpp
@@ -14,7 +15,11 @@ set (SOURCE_FILES ${PROJECT_DIR}/src/builder.cpp
 
 # Create a library called "gungi" which includes the source files that make up
 # the "gungi" project.
-add_library (gungi ${SOURCE_FILES})
+add_library (gungi SHARED ${SOURCE_FILES})
+
+if (APPLE)
+  set_target_properties (gungi PROPERTIES LINK_FLAGS "-Wl,-all_load -dynamiclib")
+endif ()
 
 # Compile the 'gungi' library using the C++11 standard.
 set_property (TARGET gungi PROPERTY CXX_STANDARD 11)

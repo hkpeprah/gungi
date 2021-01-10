@@ -15,7 +15,7 @@ namespace gungi {
 Player::Player(colour_t colour)
 : m_colour(colour)
 , m_units()
-, m_commander(NULL, NilDeleter<Unit>())
+, m_commander(nullptr)
 {
   // DO NOTHING
 }
@@ -27,6 +27,7 @@ Player::~Player(void) {
 // MANIPULATORS
 void Player::reset(void) {
   m_units.clear();
+  m_commander = nullptr;
 }
 
 void Player::addUnit(Unit *unit, error_t& error) {
@@ -43,7 +44,7 @@ void Player::addUnit(SharedUnitPtr& unit, error_t& error) {
     error = GUNGI_ERROR_DUPLICATE;
   } else {
     if (unit->front() == GUNGI_PIECE_COMMANDER) {
-      GASSERT(m_commander.get() == NULL);
+      GASSERT(m_commander == nullptr);
       m_commander = unit;
     }
 
